@@ -1,0 +1,4 @@
+101, Qasim Khan, CS, 2000
+102, Bilal Shah, DS, 100000
+103, Hanan Iftikhar, IT, 1000
+
