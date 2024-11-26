@@ -16,7 +16,7 @@ int main()
             count++;
         }
     }
-    cout << "The Number of Elements greater than "x" are : " << count;
+    cout << "The Number of Elements greater than (x) are : " << count;
 
     return 0;
 }
