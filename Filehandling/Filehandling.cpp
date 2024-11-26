@@ -6,7 +6,6 @@ using namespace std;
 
 void newemployee()
 {
-
     fstream myfile;
     myfile.open("Data.txt", fstream ::app);
 
@@ -23,8 +22,7 @@ void newemployee()
     cout << "Enter Salary of the Employee : ";
     cin >> salary;
 
-    myfile << "\n"
-           << id << ", " << name << ", " << department << ", " << salary;
+    myfile << "\n" << id << ", " << name << ", " << department << ", " << salary;
 
     myfile.close();
     cout << "Data added successfully";
@@ -47,7 +45,6 @@ void display()
 
 void search()
 {
-
     fstream myfile;
     myfile.open("Data.txt", fstream ::in);
     if (!myfile.is_open())
@@ -145,7 +142,6 @@ void deletee();
 
 int main()
 {
-
     int a;
 
     cout << "Hello Sir! How can we help you ? \n\nKindly Select One " << endl;
@@ -156,7 +152,6 @@ int main()
     switch (a)
     {
     case 1:
-
         newemployee();
         break;
     case 2:
