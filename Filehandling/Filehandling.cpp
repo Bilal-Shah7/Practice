@@ -138,15 +138,63 @@ void update()
     }
 }
 
-void deletee();
+void deletee()
+{
+    fstream myfile;
+    fstream tempfile;
+    myfile.open("Data.txt", fstream ::in);
+    tempfile.open("temp.txt", fstream ::out);
+
+    if (!myfile.is_open() || !tempfile.is_open())
+    {
+        cout << "Error opening the file" << endl;
+    }
+    string id;
+    cout << "\nEnter ID of the Employee : ";
+    cin >> id;
+    string line;
+    bool found = false;
+    while (!myfile.eof())
+    {
+
+        while (getline(myfile, line))
+        {
+            if (line.find(id + ",") == 0)
+            {
+                cout << line << "\nData of the Employee with the above records is deleted." << endl;
+                found = true;
+                continue;
+            }
+            else
+            {
+                tempfile << line << endl;
+            }
+        }
+
+        myfile.close();
+        tempfile.close();
+
+        remove("Data.txt");
+        rename("temp.txt", "Data.txt");
+
+        if (found)
+        {
+            cout << "Data Deleted Successfully.";
+        }
+        if (!found)
+        {
+            cout << "No Employee with such ID : " << id << ", is registered.";
+        }
+    }
+};
 
 int main()
 {
     int a;
 
     cout << "Hello Sir! How can we help you ? \n\nKindly Select One " << endl;
-    cout << "1. Add New Employee details. \n2. Display All Employees Records. \n3. Search for an Employee. \n4. Update Salary of an Employee \n5. Delete an Employee Records" << endl;
-    cout << "What you want us to do : ";
+    cout << "\n1. Add New Employee details. \n2. Display All Employees Records. \n3. Search for an Employee. \n4. Update Salary of an Employee \n5. Delete an Employee Records" << endl;
+    cout << "\nWhat you want us to do : ";
     cin >> a;
 
     switch (a)
@@ -162,5 +210,7 @@ int main()
         break;
     case 4:
         update();
+    case 5:
+        deletee();
     }
 }
