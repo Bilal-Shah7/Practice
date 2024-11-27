@@ -210,11 +210,11 @@ int main()
         break;
     case 4:
         update();
-        break;
+            break;
     case 5:
         deletee();
         break;
     }
-
+    
     return 0;
 }
