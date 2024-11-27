@@ -33,7 +33,7 @@ void display()
     fstream myfile;
     myfile.open("Data.txt", fstream ::in);
     string display;
-    cout << "Records of All Employees" << endl;
+    cout << "\nRecords of All Employees" << endl;
     while (!myfile.eof())
     {
         getline(myfile, display);
@@ -210,7 +210,11 @@ int main()
         break;
     case 4:
         update();
+        break;
     case 5:
         deletee();
+        break;
     }
+
+    return 0;
 }
