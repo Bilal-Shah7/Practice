@@ -11,12 +11,12 @@ void board(char *spaces)
     cout << "  |   |  " << endl;
 };
 
-void plyr1move(char *spaces, char player1)
+void plyr1move(char *spaces, char player1, char player2)
 {
     int number;
     do
     {
-        cout << "Player 1 Turn"<<endl;
+        cout << "Player 1 Turn" << endl;
         cout << "Enter spot number (1-9) : ";
         cin >> number;
         number--;
@@ -25,18 +25,23 @@ void plyr1move(char *spaces, char player1)
             spaces[number] = player1;
             break;
         }
+ else if (spaces[number]==player1 || spaces[number]==player2){
 
-        else
-        {
             cout << "Space already filled" << endl;
+
         }
+
+       
+       
     } while (!number > 0 || !number < 9);
 }
 
-void plyr2move(char *spaces, char player2){
+void plyr2move(char *spaces, char player2, char player1)
+{
     int number;
     do
-    { cout << "PLAYER 2 Turn"<<endl;
+    {
+        cout << "PLAYER 2 Turn" << endl;
         cout << "Enter spot number (1-9) : ";
         cin >> number;
         number--;
@@ -45,11 +50,13 @@ void plyr2move(char *spaces, char player2){
             spaces[number] = player2;
             break;
         }
+        else if (spaces[number]==player1 || spaces[number]==player2){
 
-        else
-        {
             cout << "Space already filled" << endl;
+
         }
+
+        
     } while (!number > 0 || !number < 9);
 };
 
@@ -102,6 +109,20 @@ bool checkwinner(char *spaces, char player1, char player2)
     }
     return true;
 };
+bool tie(char *spaces)
+{
+    for (int i = 0; i < 9; i++)
+    {
+
+        if (spaces[i] == ' ')
+        {
+
+            return false;
+        }
+    }
+    cout << "ITS A TIE \n";
+    return true;
+}
 
 int main()
 {
@@ -125,18 +146,24 @@ int main()
 
     while (running)
     {
-        plyr1move(spaces, player1);
+        plyr1move(spaces, player1, player2);
         board(spaces);
-        if (checkwinner(spaces, player1, player2)){
+        if (checkwinner(spaces, player1, player2))
+        {
             return false;
             break;
         }
-        plyr2move(spaces, player2);
+        plyr2move(spaces, player2, player1 );
         board(spaces);
-        if (checkwinner(spaces, player1, player2)){
+        if (checkwinner(spaces, player1, player2))
+        {
             return false;
             break;
         }
-
+        if (tie(spaces))
+        {
+            return false;
+            break;
+        }
     }
 }
