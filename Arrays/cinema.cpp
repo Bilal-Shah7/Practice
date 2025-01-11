@@ -18,7 +18,8 @@ void availableseat(int cinema[ROWS][COLS], int row, int col)
     {
         cout << "Sorry! Seat is already reserved." << endl;
     }
-};
+}
+
 int seatcount(int cinema[ROWS][COLS])
 {
     int count = 0;
@@ -37,6 +38,7 @@ int seatcount(int cinema[ROWS][COLS])
 
     return count;
 }
+
 void firstavseat(int cinema[ROWS][COLS])
 {
     for (int i = 0; i < ROWS; i++)
@@ -53,49 +55,50 @@ void firstavseat(int cinema[ROWS][COLS])
         cout << "No seat is available";
     }
 }
-    int main()
+
+int main()
+{
+
+    int cinema[ROWS][COLS] = {
+        {1, 1, 1, 0, 0, 1},
+        {1, 0, 1, 0, 0, 1},
+        {0, 1, 1, 0, 1, 1},
+        {1, 0, 1, 0, 1, 0},
+        {0, 0, 1, 0, 1, 1},
+    };
+    int choice;
+    int row;
+    int col;
+    do
     {
+        cout << "Cinema Settings" << endl;
+        cout << "1. For checking available seat.\n2. For number of available seats.\n3. For checking the first available seat.\n4. Exit Menu. " << endl;
+        cin >> choice;
 
-        int cinema[ROWS][COLS] = {
-            {1, 1, 1, 0, 0, 1},
-            {1, 0, 1, 0, 0, 1},
-            {0, 1, 1, 0, 1, 1},
-            {1, 0, 1, 0, 1, 0},
-            {0, 0, 1, 0, 1, 1},
-        };
-        int choice;
-        int row;
-        int col;
-        do
+        switch (choice)
         {
-            cout << "Cinema Settings" << endl;
-            cout << "1. For checking available seat.\n2. For number of available seats.\n3. For checking the first available seat.\n4. Exit Menu. " << endl;
-            cin >> choice;
+        case 1:
+            cout << "Kindly Enter Row Number of your desired seat : ";
+            cin >> row;
+            cout << "Kindly Enter Column Number of your desired seat : ";
+            cin >> col;
+            availableseat(cinema, row, col);
+            break;
 
-            switch (choice)
-            {
-            case 1:
-                cout << "Kindly Enter Row Number of your desired seat : ";
-                cin >> row;
-                cout << "Kindly Enter Column Number of your desired seat : ";
-                cin >> col;
-                availableseat(cinema, row, col);
-                break;
+        case 2:
+            cout << "The number of available seats are : " << seatcount(cinema) << endl;
+            break;
 
-            case 2:
-                cout << "The number of available seats are : " << seatcount(cinema) << endl;
-                break;
+        case 3:
+            firstavseat(cinema);
+            break;
 
-            case 3:
-                firstavseat(cinema);
-                break;
+        case 4:
+            cout << "Exiting system...";
+            break;
 
-            case 4:
-                cout << "Exiting system...";
-                break;
-
-            default:
-                cout << "Invalid Input ! Try again.";
-            }
-        } while (choice != 4);
-    }
+        default:
+            cout << "Invalid Input ! Try again.";
+        }
+    } while (choice != 4);
+}
